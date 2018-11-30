@@ -11,10 +11,13 @@
         </div>
       </div>
     </div>
+    <country-detail></country-detail>
   </div>
 </template>
 
 <script>
+
+import countryDetail from './countryDetail'
 
 import axios from 'axios'
 
@@ -35,6 +38,9 @@ export default {
       countryList: []
     }
   },
+  components: {
+    countryDetail
+  },
   props: {
     msg: String
   },
@@ -45,9 +51,7 @@ export default {
         countryName: this.countryName,
         pageNum: this.pageNum - 1
       })).then((res) => {
-        console.log(res)
         if (res.data.returncode === 0) {
-          console.log(res.data)
           that.countryList = res.data.data
         }
       })
