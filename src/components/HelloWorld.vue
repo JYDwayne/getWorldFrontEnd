@@ -47,13 +47,20 @@ export default {
   methods: {
     getCountry ($event) {
       var that = this
-      Axios.post('/getlist', qs.stringify({
-        countryName: this.countryName,
-        pageNum: this.pageNum - 1
-      })).then((res) => {
+      Axios.get(
+          '/getCountryList',{
+              params: {
+                  countryName: this.countryName,
+                  pageNum: this.pageNum - 1
+              }
+          })
+.then((res) => {
+          console.log(res)
         if (res.data.returncode === 0) {
           that.countryList = res.data.data
         }
+      }).catch((err) =>{
+          console.log(err)
       })
     }
   }
